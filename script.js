@@ -1,5 +1,5 @@
 // ======================
-// REVN SCRIPT FINAL
+// REVN SCRIPT FIREBASE FINAL
 // ======================
 
 // PRODUCTOS
@@ -323,135 +323,16 @@ document.getElementById("profile-menu")
 
 }
 
-function logoutUser(){
-
-localStorage.removeItem("revnUser");
-
-location.reload();
-
-}
-
 // ======================
-// LOGIN
+// INVITADO
 // ======================
-
-function closeLogin(){
-
-const modal =
-document.getElementById("register-modal");
-
-modal.style.opacity = "0";
-
-modal.style.pointerEvents = "none";
-
-document.body.style.overflow = "auto";
-
-setTimeout(()=>{
-
-modal.style.display = "none";
-
-},300);
-
-}
 
 function continueGuest(){
 
-localStorage.setItem("revnUser","guest");
+document.getElementById("register-modal")
+.style.display = "none";
 
-closeLogin();
-
-}
-
-function login(){
-
-const email =
-document.getElementById("email").value;
-
-const password =
-document.getElementById("password").value;
-
-if(email === "" || password === ""){
-
-alert("Completa todos los campos");
-
-return;
-
-}
-
-localStorage.setItem("revnUser",email);
-
-setTimeout(()=>{
-
-closeLogin();
-
-},1000);
-
-}
-
-localStorage.setItem("revnUser",email);
-
-const btn =
-document.querySelector(".login-btn");
-
-btn.innerText = "ENTRANDO...";
-
-setTimeout(()=>{
-
-closeLogin();
-
-btn.innerText = "INICIAR SESIÓN";
-
-},1500);
-
-}
-
-function register(){
-
-const email =
-document.getElementById("email").value;
-
-const password =
-document.getElementById("password").value;
-
-if(email === "" || password === ""){
-
-alert("Completa todos los campos");
-
-return;
-
-}
-
-localStorage.setItem("revnUser",email);
-
-const btn =
-document.querySelector(".create-btn");
-
-btn.innerText = "CREANDO...";
-
-setTimeout(()=>{
-
-closeLogin();
-
-btn.innerText = "CREAR CUENTA";
-
-},1500);
-
-}
-
-function forgotPassword(){
-
-const email =
-document.getElementById("email").value;
-
-if(email === ""){
-
-alert("Ingresa tu correo");
-
-return;
-
-}
-
-alert("Correo enviado 🔥");
+document.body.style.overflow = "auto";
 
 }
 
@@ -473,12 +354,6 @@ if(user){
 document.getElementById("register-modal")
 .style.display = "none";
 
-document.getElementById("register-modal")
-.style.opacity = "0";
-
-document.getElementById("register-modal")
-.style.pointerEvents = "none";
-
 document.getElementById("user-email")
 .innerText = user;
 
@@ -486,12 +361,6 @@ document.getElementById("user-email")
 
 document.getElementById("register-modal")
 .style.display = "flex";
-
-document.getElementById("register-modal")
-.style.opacity = "1";
-
-document.getElementById("register-modal")
-.style.pointerEvents = "all";
 
 }
 
