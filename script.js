@@ -351,7 +351,19 @@ alert("Correo de recuperación enviado 🔥");
 
 window.onload = () => {
 
-document.body.classList.remove("modal-open");
+const user = localStorage.getItem("revnUser");
+
+if(user){
+
+document.getElementById("register-modal")
+.style.display = "none";
+
+}else{
+
+document.getElementById("register-modal")
+.style.display = "flex";
+
+}
 
 document.body.style.overflow = "auto";
 
