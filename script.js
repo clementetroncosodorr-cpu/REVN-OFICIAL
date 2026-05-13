@@ -35,7 +35,7 @@ images:[
 
 {
 name:"REVN TEDDY",
-price:25990,
+price:21990,
 images:[
 "activos/teddy-front.jpg",
 "activos/teddy-back.jpg"
