@@ -351,20 +351,18 @@ alert("Correo de recuperación enviado 🔥");
 
 window.onload = () => {
 
+document.body.style.overflow = "auto";
+
 const user = localStorage.getItem("revnUser");
 
 if(user){
 
-document.getElementById("register-modal")
-.style.display = "none";
+document.getElementById("loginOverlay").style.display = "none";
 
 }else{
 
-document.getElementById("register-modal")
-.style.display = "flex";
+document.getElementById("loginOverlay").style.display = "flex";
 
 }
-
-document.body.style.overflow = "auto";
 
 };
