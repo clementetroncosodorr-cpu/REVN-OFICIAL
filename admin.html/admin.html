@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>REVN ADMIN</title>
+
+<style>
+
+body{
+background:#050505;
+color:white;
+font-family:Arial;
+padding:40px;
+}
+
+input{
+display:block;
+margin-bottom:15px;
+padding:12px;
+width:320px;
+background:#111;
+border:1px solid #333;
+color:white;
+}
+
+button{
+padding:12px 20px;
+background:white;
+color:black;
+border:none;
+cursor:pointer;
+font-weight:bold;
+margin-bottom:20px;
+}
+
+.card{
+background:#111;
+padding:20px;
+margin-top:20px;
+border:1px solid #222;
+}
+
+img{
+width:150px;
+margin-top:10px;
+margin-right:10px;
+}
+
+</style>
+
+</head>
+<body>
+
+<h1>REVN ADMIN PANEL</h1>
+
+<input type="text" id="name" placeholder="Nombre producto">
+
+<input type="number" id="price" placeholder="Precio">
+
+<input type="text" id="image1" placeholder="Imagen frontal">
+
+<input type="text" id="image2" placeholder="Imagen trasera">
+
+<button onclick="uploadProduct()">
+
+SUBIR PRODUCTO
+
+</button>
+
+<div id="products"></div>
+
+<script type="module">
+
+import { initializeApp }
+
+from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+
+import {
+
+getFirestore,
+collection,
+addDoc,
+getDocs,
+deleteDoc,
+doc
+
+}
+
+from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+
+const firebaseConfig = {
+
+apiKey: "AIzaSyCc4QHCTSXcYhSCzfr7Cz9OcQnjT4NV6Bg",
+
+authDomain: "revn-c08b9.firebaseapp.com",
+
+projectId: "revn-c08b9",
+
+storageBucket: "revn-c08b9.firebasestorage.app",
+
+messagingSenderId: "48548923056",
+
+appId: "1:48548923056:web:c77f5527971073b6041d75"
+
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+const productsDiv=document.getElementById("products");
+
+async function loadProducts(){
+
+productsDiv.innerHTML="";
+
+const querySnapshot = await getDocs(collection(db,"products"));
+
+querySnapshot.forEach((productDoc)=>{
+
+const p=productDoc.data();
+
+productsDiv.innerHTML += `
+
+<div class="card">
+
+<h2>${p.name}</h2>
+
+<p>$${p.price}</p>
+
+<img src="${p.images[0]}">
+
+<img src="${p.images[1]}">
+
+<br><br>
+
+<button onclick="deleteProduct('${productDoc.id}')">
+
+ELIMINAR
+
+</button>
+
+</div>
+
+`;
+
+});
+
+}
+
+window.uploadProduct=async function(){
+
+const name=document.getElementById("name").value;
+
+const price=parseInt(document.getElementById("price").value);
+
+const image1=document.getElementById("image1").value;
+
+const image2=document.getElementById("image2").value;
+
+await addDoc(collection(db,"products"),{
+
+name:name,
+
+price:price,
+
+images:[image1,image2]
+
+});
+
+alert("Producto subido");
+
+loadProducts();
+
+}
+
+window.deleteProduct = async function(id){
+
+await deleteDoc(doc(db,"products",id));
+
+alert("Producto eliminado");
+
+loadProducts();
+
+}
+
+loadProducts();
+
+</script>
+
+</body>
+</html>

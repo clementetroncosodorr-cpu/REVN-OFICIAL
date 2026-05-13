@@ -1,0 +1,113 @@
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+
+import {
+getAuth,
+createUserWithEmailAndPassword,
+signInWithEmailAndPassword,
+signOut,
+sendPasswordResetEmail
+
+from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+
+import {
+getFirestore,
+doc,
+setDoc
+}
+
+from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+
+const firebaseConfig = {
+
+apiKey: "AIzaSyCc4QHCTSXcYhSCzfr7Cz9OcQnjT4NV6Bg",
+authDomain: "revn-c08b9.firebaseapp.com",
+projectId: "revn-c08b9",
+storageBucket: "revn-c08b9.firebasestorage.app",
+messagingSenderId: "48548923056",
+appId: "1:48548923056:web:c77f5527971073b6041d75"
+
+};
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const db = getFirestore(app);
+
+window.registerUser = function(){
+
+const email=document.getElementById("email").value;
+
+const password=document.getElementById("password").value;
+
+createUserWithEmailAndPassword(auth,email,password)
+
+.then(async(userCredential)=>{
+
+const user = userCredential.user;
+
+await setDoc(doc(db,"users",user.uid),{
+
+email:email,
+createdAt:new Date().toISOString()
+
+});
+
+localStorage.setItem("revnUser",email);
+
+alert("Cuenta creada");
+
+location.reload();
+
+})
+
+.catch((error)=>{
+
+alert(error.message);
+
+});
+
+}
+
+window.loginUser = function(){
+
+const email=document.getElementById("email").value;
+
+const password=document.getElementById("password").value;
+
+signInWithEmailAndPassword(auth,email,password)
+
+.then(()=>{
+
+localStorage.setItem("revnUser",email);
+
+alert("Sesión iniciada");
+
+location.reload();
+
+})
+
+.catch((error)=>{
+
+alert(error.message);
+
+});
+
+}
+
+window.logoutUser = function(){
+
+signOut(auth).then(()=>{
+
+localStorage.removeItem("revnUser");
+
+location.reload();
+
+});
+
+}
+
+</script>
+<script src='script.js'></script>
