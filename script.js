@@ -380,6 +380,16 @@ return;
 
 localStorage.setItem("revnUser",email);
 
+setTimeout(()=>{
+
+closeLogin();
+
+},1000);
+
+}
+
+localStorage.setItem("revnUser",email);
+
 const btn =
 document.querySelector(".login-btn");
 
