@@ -370,6 +370,23 @@ return;
 
 localStorage.setItem("revnUser",email);
 
+const btn =
+document.querySelector(".login-btn");
+
+btn.innerText = "ENTRANDO...";
+
+setTimeout(()=>{
+
+closeLogin();
+
+btn.innerText = "INICIAR SESIÓN";
+
+},1500);
+
+}
+
+localStorage.setItem("revnUser",email);
+
 closeLogin();
 
 }
