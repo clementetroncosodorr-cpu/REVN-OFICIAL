@@ -1,36 +1,44 @@
 <!DOCTYPE html>
-<html lang='es'>
+<html lang="es">
 
 <head>
 
-<meta charset='UTF-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>REVN</title>
 
-<link rel='stylesheet' href='style.css'>
+<link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
 
-<div id='register-modal' class='overlay'>
+<!-- LOGIN -->
 
-<div class='popup'>
+<div id="register-modal" class="overlay">
+
+<div class="popup">
 
 <h2>REVN ACCOUNT</h2>
 
-<input type='email' id='email' placeholder='Correo'>
+<input type="email" id="email" placeholder="Correo">
 
-<input type='password' id='password' placeholder='Contraseña'>
+<input type="password" id="password" placeholder="Contraseña">
 
-<button onclick='registerUser()'>CREAR CUENTA</button>
+<button class="login-btn" onclick="login()">
+INICIAR SESIÓN
+</button>
 
-<button onclick='loginUser()'>INICIAR SESIÓN</button>
+<button class="create-btn" onclick="register()">
+CREAR CUENTA
+</button>
 
-<button onclick='resetPassword()'>OLVIDÉ MI CONTRASEÑA</button>
+<button class="create-btn" onclick="forgotPassword()">
+OLVIDÉ MI CONTRASEÑA
+</button>
 
-<div class='auth-switch' onclick='continueGuest()'>
+<div class="auth-switch" onclick="continueGuest()">
 CONTINUAR COMO INVITADO
 </div>
 
@@ -38,43 +46,61 @@ CONTINUAR COMO INVITADO
 
 </div>
 
-<div class='topbar'>
+<!-- TOPBAR -->
+
+<div class="topbar">
 ENVÍOS A TODO CHILE 🇨🇱
 </div>
 
+<!-- HEADER -->
+
 <header>
 
-<a href='#inicio' class='logo'>REVN</a>
+<a href="#inicio" class="logo">
+REVN
+</a>
 
 <nav>
 
-<a href='#productos'>PRODUCTOS</a>
+<a href="#productos">
+PRODUCTOS
+</a>
 
-<a href='#nosotros'>NOSOTROS</a>
+<a href="#nosotros">
+NOSOTROS
+</a>
 
-<a href='#contacto'>CONTACTO</a>
+<a href="#contacto">
+CONTACTO
+</a>
 
 </nav>
 
-<div class='header-actions'>
+<div class="header-actions">
 
-<div class='profile'>
+<div class="profile">
 
-<button onclick='toggleProfile()'>👤</button>
+<button onclick="toggleProfile()">
+👤
+</button>
 
-<div class='profile-menu' id='profile-menu'>
+<div class="profile-menu" id="profile-menu">
 
-<p id='user-email'>No conectado</p>
+<p id="user-email">
+No conectado
+</p>
 
-<button onclick='logoutUser()'>CERRAR SESIÓN</button>
+<button onclick="logoutUser()">
+CERRAR SESIÓN
+</button>
 
 </div>
 
 </div>
 
-<div class='cart-btn' onclick='toggleCart()'>
+<div class="cart-btn" onclick="toggleCart()">
 
-🛒 <span id='cart-count'>0</span>
+🛒 <span id="cart-count">0</span>
 
 </div>
 
@@ -82,19 +108,27 @@ ENVÍOS A TODO CHILE 🇨🇱
 
 </header>
 
-<section class='hero' id='inicio'>
+<!-- HERO -->
+
+<section class="hero" id="inicio">
 
 <h1>REVN</h1>
 
 <p>STREETWEAR BUILT DIFFERENT</p>
 
-<a href='#productos'>COMPRAR</a>
+<a href="#productos">
+COMPRAR
+</a>
 
 </section>
 
-<section class='products' id='productos'></section>
+<!-- PRODUCTOS -->
 
-<section class='about' id='nosotros'>
+<section class="products" id="productos"></section>
+
+<!-- NOSOTROS -->
+
+<section class="about" id="nosotros">
 
 <h2>NOSOTROS</h2>
 
@@ -110,45 +144,61 @@ Es identidad. Mentalidad. Revolución.
 
 </section>
 
-<section class='contact' id='contacto'>
+<!-- CONTACTO -->
+
+<section class="contact" id="contacto">
 
 <h2>REDES</h2>
 
-<div class='socials'>
+<div class="socials">
 
-<a href='#'>INSTAGRAM</a>
+<a href="#">
+INSTAGRAM
+</a>
 
-<a href='#'>TIKTOK</a>
+<a href="#">
+TIKTOK
+</a>
 
-<a href='https://wa.me/56942361269'>WHATSAPP</a>
+<a href="https://wa.me/56942361269">
+WHATSAPP
+</a>
 
 </div>
 
 </section>
 
-<div class='modal' id='modal'>
+<!-- MODAL -->
 
-<div class='modal-box'>
+<div class="modal" id="modal">
 
-<span class='close' onclick='closeModal()'>×</span>
+<div class="modal-box">
 
-<div class='slider'>
+<div class="close" onclick="closeModal()">
+←
+</div>
 
-<button class='arrow left' onclick='prevSlide()'>❮</button>
+<div class="slider">
 
-<img id='slider-img'>
+<button class="arrow left" onclick="prevSlide()">
+❮
+</button>
 
-<button class='arrow right' onclick='nextSlide()'>❯</button>
+<img id="slider-img">
+
+<button class="arrow right" onclick="nextSlide()">
+❯
+</button>
 
 </div>
 
-<div class='info'>
+<div class="info">
 
-<h2 id='title'></h2>
+<h2 id="title"></h2>
 
-<div class='price' id='price'></div>
+<div class="price" id="price"></div>
 
-<ul class='features'>
+<ul class="features">
 
 <li>100% Algodón Premium</li>
 
@@ -160,212 +210,74 @@ Es identidad. Mentalidad. Revolución.
 
 </ul>
 
-<div class='sizes'>
+<div class="sizes">
 
-<button onclick='selectSize(this)'>S</button>
+<button onclick="selectSize(this)">
+S
+</button>
 
-<button onclick='selectSize(this)'>M</button>
+<button class="active" onclick="selectSize(this)">
+M
+</button>
 
-<button onclick='selectSize(this)'>L</button>
+<button onclick="selectSize(this)">
+L
+</button>
 
-<button onclick='selectSize(this)'>XL</button>
-
-</div>
-
-<div class='actions'>
-
-<button onclick='addToCart()'>AGREGAR AL CARRO</button>
-
-<button onclick='buyNow()'>COMPRAR AHORA</button>
-
-</div>
+<button onclick="selectSize(this)">
+XL
+</button>
 
 </div>
 
+<div class="actions">
+
+<button onclick="addToCart()">
+AGREGAR AL CARRO
+</button>
+
+<button onclick="checkout()">
+COMPRAR AHORA
+</button>
+
+</div>
+
 </div>
 
 </div>
 
-<div class='cart' id='cart'>
+</div>
+
+<!-- CARRITO -->
+
+<div class="cart" id="cart">
+
+<div class="cart-top">
 
 <h2>CARRITO</h2>
 
-<div id='cart-items'></div>
-
-<div class='total'>
-
-TOTAL: <span id='total'>$0</span>
+<div class="close-cart" onclick="toggleCart()">
+←
+</div>
 
 </div>
 
-<button onclick='checkout()'>COMPRAR TODO</button>
+<div id="cart-items"></div>
+
+<div class="total">
+
+TOTAL:
+<span id="total">$0</span>
 
 </div>
 
-<script type="module">
+<button onclick="checkout()">
+COMPRAR TODO
+</button>
 
-import { initializeApp }
+</div>
 
-from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
-
-import {
-
-getAuth,
-createUserWithEmailAndPassword,
-signInWithEmailAndPassword,
-signOut,
-sendPasswordResetEmail
-
-}
-
-from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
-
-import {
-
-getFirestore,
-doc,
-setDoc
-
-}
-
-from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
-
-const firebaseConfig = {
-
-apiKey: "AIzaSyCc4QHCTSXcYhSCzfr7Cz9OcQnjT4NV6Bg",
-
-authDomain: "revn-c08b9.firebaseapp.com",
-
-projectId: "revn-c08b9",
-
-storageBucket: "revn-c08b9.firebasestorage.app",
-
-messagingSenderId: "48548923056",
-
-appId: "1:48548923056:web:c77f5527971073b6041d75"
-
-};
-
-const app = initializeApp(firebaseConfig);
-
-const auth = getAuth(app);
-
-const db = getFirestore(app);
-
-window.registerUser = function(){
-
-const email=document.getElementById("email").value;
-
-const password=document.getElementById("password").value;
-
-createUserWithEmailAndPassword(auth,email,password)
-
-.then(async(userCredential)=>{
-
-const user=userCredential.user;
-
-await setDoc(doc(db,"users",user.uid),{
-
-email:email,
-createdAt:new Date().toISOString()
-
-});
-
-localStorage.setItem("revnUser",email);
-
-alert("Cuenta creada");
-
-  document.getElementById("register-modal")
-.style.display = "none";
-
-document.body.style.overflow = "auto";
-
-location.reload();
-
-
-})
-
-.catch((error)=>{
-
-alert(error.message);
-
-});
-
-}
-
-window.loginUser = function(){
-
-const email=document.getElementById("email").value;
-
-const password=document.getElementById("password").value;
-
-signInWithEmailAndPassword(auth,email,password)
-
-.then(()=>{
-
-localStorage.setItem("revnUser",email);
-
-alert("Sesión iniciada");
-
-  document.getElementById("register-modal")
-.style.display = "none";
-
-document.body.style.overflow = "auto";
-location.reload();
-
-})
-
-.catch((error)=>{
-
-alert(error.message);
-
-});
-
-}
-
-window.logoutUser = function(){
-
-signOut(auth).then(()=>{
-
-localStorage.removeItem("revnUser");
-
-location.reload();
-
-});
-
-}
-
-window.resetPassword = function(){
-
-const email=document.getElementById("email").value;
-
-if(!email){
-
-alert("Ingresa tu correo");
-
-return;
-
-}
-
-sendPasswordResetEmail(auth,email)
-
-.then(()=>{
-
-alert("Correo enviado");
-
-})
-
-.catch((error)=>{
-
-alert(error.message);
-
-});
-
-}
-
-</script>
-
-<script src='script.js'></script>
+<script src="script.js"></script>
 
 </body>
 
