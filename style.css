@@ -6,10 +6,13 @@ scroll-behavior:smooth;
 font-family:Arial,Helvetica,sans-serif;
 }
 
+html,body{
+overflow-x:hidden;
+}
+
 body{
 background:#0a0a0a;
 color:white;
-overflow-x:hidden;
 }
 
 /* TOPBAR */
@@ -182,7 +185,7 @@ transform:translateY(-10px);
 
 .card img{
 width:100%;
-height:420px;
+height:520px;
 object-fit:cover;
 }
 
@@ -274,42 +277,47 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,.9);
+background:rgba(0,0,0,.92);
 display:none;
 justify-content:center;
 align-items:center;
-padding:30px;
+padding:20px;
 z-index:5000;
+overflow-y:auto;
 }
 
 .modal-box{
 width:100%;
-max-width:1200px;
+max-width:1300px;
 background:#111;
 display:grid;
 grid-template-columns:1fr 1fr;
 position:relative;
+border:1px solid #222;
 }
 
 .close{
 position:absolute;
 top:20px;
-right:20px;
-font-size:40px;
+right:25px;
+font-size:45px;
 cursor:pointer;
 z-index:10;
+color:white;
 }
 
 .slider{
 position:relative;
-height:750px;
+height:850px;
 overflow:hidden;
+background:black;
 }
 
 .slider img{
 width:100%;
 height:100%;
-object-fit:cover;
+object-fit:contain;
+background:black;
 }
 
 .arrow{
@@ -437,6 +445,7 @@ transition:.4s;
 overflow-y:auto;
 display:flex;
 flex-direction:column;
+border-left:1px solid #222;
 }
 
 .cart.open{
@@ -451,8 +460,9 @@ margin-bottom:30px;
 }
 
 .close-cart{
-font-size:35px;
+font-size:40px;
 cursor:pointer;
+font-weight:900;
 }
 
 .cart h2{
@@ -497,9 +507,7 @@ border:none;
 cursor:pointer;
 }
 
-/* LOGIN REVN FINAL */
-
-/* LOGIN FINAL */
+/* LOGIN */
 
 .overlay{
 position:fixed;
@@ -507,67 +515,76 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,.92);
+background:rgba(0,0,0,.96);
 display:flex;
 justify-content:center;
 align-items:center;
-z-index:99999;
+z-index:10000;
 padding:20px;
 }
 
 .popup{
 width:100%;
-max-width:430px;
-background:white;
-padding:45px;
+max-width:520px;
+background:black;
+padding:55px 45px;
 display:flex;
 flex-direction:column;
-gap:18px;
-color:black;
+gap:20px;
+color:white;
+border:2px solid white;
 }
 
 .popup h2{
 text-align:center;
-font-size:42px;
+font-size:54px;
 font-weight:900;
-letter-spacing:3px;
-margin-bottom:15px;
+letter-spacing:6px;
+margin-bottom:10px;
+color:white;
 }
 
 .popup input{
 width:100%;
-padding:18px;
-font-size:20px;
-border:2px solid black;
-background:white;
+padding:22px;
+font-size:22px;
+border:2px solid white;
 outline:none;
-}
-
-.popup .login-btn{
 background:black;
 color:white;
-border:none;
-padding:20px;
-font-size:30px;
-font-weight:900;
-cursor:pointer;
 }
 
-.popup .create-btn{
+.popup input::placeholder{
+color:#aaa;
+}
+
+.popup button{
+width:100%;
+padding:22px;
+font-size:28px;
+font-weight:900;
+cursor:pointer;
+transition:.3s;
+}
+
+.popup button:nth-of-type(1){
+background:black;
+color:white;
+border:2px solid white;
+}
+
+.popup button:nth-of-type(2){
 background:white;
 color:black;
 border:none;
-font-size:22px;
-font-weight:700;
-cursor:pointer;
 }
 
-.forgot-password{
-text-align:center;
-font-size:16px;
-text-decoration:underline;
-cursor:pointer;
-margin-top:-5px;
+.popup button:nth-of-type(3){
+background:black;
+color:white;
+border:2px solid white;
+font-size:18px;
+padding:18px;
 }
 
 .auth-switch{
@@ -576,7 +593,18 @@ font-size:18px;
 font-weight:700;
 cursor:pointer;
 margin-top:5px;
+text-decoration:underline;
+color:white;
 }
+
+.auth-switch:hover{
+opacity:.7;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
 header{
 padding:20px;
 }
@@ -598,7 +626,7 @@ grid-template-columns:1fr;
 }
 
 .slider{
-height:450px;
+height:500px;
 }
 
 .info{
@@ -625,13 +653,8 @@ padding:40px 25px;
 font-size:38px;
 }
 
-.popup .login-btn{
-font-size:26px;
-padding:20px;
-}
-
-.popup .create-btn{
-font-size:20px;
+.popup button{
+font-size:22px;
 padding:18px;
 }
 
