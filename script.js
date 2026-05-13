@@ -1,82 +1,156 @@
-const products=[
-{name:"BASIC REVN",price:21990,images:["activos/basic-front.jpg","activos/basic-back.jpg"]},
-{name:"LOST TEDDY",price:21990,images:["activos/teddy-front.jpg","activos/teddy-back.jpg"]},
-{name:"LOST DICE",price:25990,images:["activos/dice-front.jpg","activos/dice-back.jpg"]},
-{name:"REBIRTH",price:25990,images:["activos/rebirth-front.jpg","activos/rebirth-back.jpg"]}
+// ======================
+// REVN SCRIPT FINAL
+// ======================
+
+// PRODUCTOS
+
+const products = [
+
+{
+name:"REVN BASIC",
+price:21990,
+images:[
+"activos/basic1.png",
+"activos/basic2.png"
+]
+},
+
+{
+name:"REVN DICE",
+price:25990,
+images:[
+"activos/dice1.png",
+"activos/dice2.png"
+]
+},
+
+{
+name:"REVN BUTTERFLY",
+price:25990,
+images:[
+"activos/butterfly1.png",
+"activos/butterfly2.png"
+]
+},
+
+{
+name:"REVN TEDDY",
+price:25990,
+images:[
+"activos/teddy1.png",
+"activos/teddy2.png"
+]
+}
+
 ];
 
-const productsDiv=document.getElementById("productos");
+// ======================
+// VARIABLES
+// ======================
 
-products.forEach((p,index)=>{
-productsDiv.innerHTML+=`
-<div class='card'>
-<img src='${p.images[0]}'>
-<div class='content'>
-<h2>${p.name}</h2>
-<div class='price'>$${p.price.toLocaleString("es-CL")}</div>
-<button onclick='openProduct(${index})'>VER</button>
-</div>
-</div>`;
-});
+let currentProduct = null;
+let currentImage = 0;
+let cart = [];
 
-let currentProduct=null;
-let currentSlide=0;
-let selectedSize="M";
+// ======================
+// MODAL
+// ======================
 
-function openProduct(index){
+function openModal(index){
 
-currentProduct=products[index];
-currentSlide=0;
+currentProduct = products[index];
 
-document.getElementById("modal").style.display="flex";
+currentImage = 0;
 
-document.getElementById("title").innerText=currentProduct.name;
+document.getElementById("modal").style.display = "flex";
 
-document.getElementById("price").innerText="$"+currentProduct.price.toLocaleString("es-CL");
+document.body.classList.add("modal-open");
 
-updateSlide();
+updateModal();
 
 }
 
 function closeModal(){
 
-document.getElementById("modal").style.display="none";
+document.getElementById("modal").style.display = "none";
+
+document.body.classList.remove("modal-open");
 
 }
 
-function updateSlide(){
+// ======================
+// UPDATE MODAL
+// ======================
 
-document.getElementById("slider-img").src=currentProduct.images[currentSlide];
+function updateModal(){
 
-}
+document.getElementById("modalImage").src =
+currentProduct.images[currentImage];
 
-function nextSlide(){
+document.getElementById("modalTitle").innerText =
+currentProduct.name;
 
-currentSlide=(currentSlide+1)%currentProduct.images.length;
-
-updateSlide();
-
-}
-
-function prevSlide(){
-
-currentSlide=(currentSlide-1+currentProduct.images.length)%currentProduct.images.length;
-
-updateSlide();
+document.getElementById("modalPrice").innerText =
+"$" + currentProduct.price.toLocaleString("es-CL");
 
 }
 
-function selectSize(btn){
+// ======================
+// SLIDER
+// ======================
 
-document.querySelectorAll(".sizes button").forEach(b=>b.classList.remove("active"));
+function nextImage(){
+
+currentImage++;
+
+if(currentImage >= currentProduct.images.length){
+
+currentImage = 0;
+
+}
+
+updateModal();
+
+}
+
+function prevImage(){
+
+currentImage--;
+
+if(currentImage < 0){
+
+currentImage = currentProduct.images.length - 1;
+
+}
+
+updateModal();
+
+}
+
+// ======================
+// TALLAS
+// ======================
+
+let selectedSize = "M";
+
+function selectSize(btn,size){
+
+selectedSize = size;
+
+document.querySelectorAll(".sizes button")
+.forEach(button => {
+
+button.classList.remove("active");
+
+});
 
 btn.classList.add("active");
 
-selectedSize=btn.innerText;
-
 }
 
-let cart = JSON.parse(localStorage.getItem("revnCart")) || [];
+// ======================
+// CARRITO
+// ======================
 
 function addToCart(){
 
@@ -84,22 +158,22 @@ cart.push({
 
 name:currentProduct.name,
 price:currentProduct.price,
-size:selectedSize,
-image:currentProduct.images[0]
+image:currentProduct.images[0],
+size:selectedSize
 
 });
 
-localStorage.setItem("revnCart",JSON.stringify(cart));
-
 renderCart();
+
+closeModal();
+
+toggleCart();
 
 }
 
-function removeItem(index){
+function removeFromCart(index){
 
 cart.splice(index,1);
-
-localStorage.setItem("revnCart",JSON.stringify(cart));
 
 renderCart();
 
@@ -107,33 +181,35 @@ renderCart();
 
 function renderCart(){
 
-let total=0;
+const cartItems = document.getElementById("cartItems");
 
-const items=document.getElementById("cart-items");
+cartItems.innerHTML = "";
 
-items.innerHTML="";
+let total = 0;
 
 cart.forEach((item,index)=>{
 
-total+=item.price;
+total += item.price;
 
-items.innerHTML+=`
+cartItems.innerHTML += `
 
-<div class='cart-item'>
+<div class="cart-item">
 
-<img src='${item.image}'>
+<img src="${item.image}">
 
 <div>
 
-<strong>${item.name}</strong><br>
+<h4>${item.name}</h4>
 
-Talla: ${item.size}<br>
+<p>Talla: ${item.size}</p>
 
-$${item.price.toLocaleString("es-CL")}
+<p>$${item.price.toLocaleString("es-CL")}</p>
 
 </div>
 
-<button onclick='removeItem(${index})'>X</button>
+<button onclick="removeFromCart(${index})">
+X
+</button>
 
 </div>
 
@@ -141,66 +217,142 @@ $${item.price.toLocaleString("es-CL")}
 
 });
 
-document.getElementById("total").innerText="$"+total.toLocaleString("es-CL");
+document.getElementById("cartTotal").innerText =
+"$" + total.toLocaleString("es-CL");
 
-document.getElementById("cart-count").innerText=cart.length;
+document.getElementById("cartCount").innerText =
+cart.length;
 
 }
+
+// ======================
+// TOGGLE CART
+// ======================
 
 function toggleCart(){
 
-document.getElementById("cart").classList.toggle("open");
+document.getElementById("cart")
+.classList.toggle("open");
 
 }
 
-function buyNow(){
-
-const msg=`Hola REVN quiero comprar:%0A%0A${currentProduct.name}%0ATalla: ${selectedSize}`;
-
-window.open(`https://wa.me/56942361269?text=${msg}`);
-
-}
+// ======================
+// CHECKOUT
+// ======================
 
 function checkout(){
 
-let msg="Hola REVN quiero comprar:%0A%0A";
+if(cart.length === 0){
 
-cart.forEach(item=>{
+alert("Tu carrito está vacío");
 
-msg+=`${item.name} - ${item.size}%0A`;
+return;
 
-});
+}
 
-window.open(`https://wa.me/56942361269?text=${msg}`);
+alert("Próximamente pagos online 🔥");
+
+}
+
+// ======================
+// PROFILE
+// ======================
+
+function toggleProfile(){
+
+document.getElementById("profileMenu")
+.classList.toggle("show-profile");
+
+}
+
+// ======================
+// LOGIN
+// ======================
+
+function closeLogin(){
+
+document.getElementById("loginOverlay")
+.style.display = "none";
+
+document.body.classList.remove("modal-open");
 
 }
 
 function continueGuest(){
 
-document.getElementById("register-modal").style.display="none";
+closeLogin();
 
 }
 
-function checkUser(){
+function login(){
 
-const user=localStorage.getItem("revnUser");
+const email =
+document.getElementById("email").value;
 
-if(user){
+const password =
+document.getElementById("password").value;
 
-document.getElementById("user-email").innerText=user;
+if(email === "" || password === ""){
 
-document.getElementById("register-modal").style.display="none";
+alert("Completa todos los campos");
 
-}
-
-}
-
-function toggleProfile(){
-
-document.getElementById("profile-menu").classList.toggle("show-profile");
+return;
 
 }
 
-renderCart();
+alert("Inicio de sesión exitoso 🔥");
 
-checkUser();
+closeLogin();
+
+}
+
+function register(){
+
+const email =
+document.getElementById("email").value;
+
+const password =
+document.getElementById("password").value;
+
+if(email === "" || password === ""){
+
+alert("Completa todos los campos");
+
+return;
+
+}
+
+alert("Cuenta creada 🔥");
+
+closeLogin();
+
+}
+
+function forgotPassword(){
+
+const email =
+document.getElementById("email").value;
+
+if(email === ""){
+
+alert("Ingresa tu correo");
+
+return;
+
+}
+
+alert("Correo de recuperación enviado 🔥");
+
+}
+
+// ======================
+// FIX SCROLL
+// ======================
+
+window.onload = () => {
+
+document.body.classList.remove("modal-open");
+
+document.body.style.overflow = "auto";
+
+};
