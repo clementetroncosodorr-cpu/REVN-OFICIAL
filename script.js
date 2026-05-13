@@ -1,5 +1,5 @@
 // ======================
-// REVN SCRIPT FINAL FIX
+// REVN SCRIPT FINAL REAL
 // ======================
 
 // PRODUCTOS
@@ -49,7 +49,7 @@ images:[
 // ======================
 
 let currentProduct = null;
-let currentImage = 0;
+let currentSlide = 0;
 let selectedSize = "M";
 
 let cart =
@@ -68,19 +68,19 @@ products.forEach((p,index)=>{
 
 productsDiv.innerHTML += `
 
-<div class="card">
+<div class='card'>
 
-<img src="${p.images[0]}">
+<img src='${p.images[0]}'>
 
-<div class="content">
+<div class='content'>
 
 <h2>${p.name}</h2>
 
-<div class="price">
+<div class='price'>
 $${p.price.toLocaleString("es-CL")}
 </div>
 
-<button onclick="openProduct(${index})">
+<button onclick='openProduct(${index})'>
 VER
 </button>
 
@@ -102,7 +102,7 @@ function openProduct(index){
 
 currentProduct = products[index];
 
-currentImage = 0;
+currentSlide = 0;
 
 document.getElementById("modal")
 .style.display = "flex";
@@ -125,7 +125,7 @@ document.getElementById("modal")
 function updateSlide(){
 
 document.getElementById("slider-img")
-.src = currentProduct.images[currentImage];
+.src = currentProduct.images[currentSlide];
 
 document.getElementById("title")
 .innerText = currentProduct.name;
@@ -138,11 +138,11 @@ document.getElementById("price")
 
 function nextSlide(){
 
-currentImage++;
+currentSlide++;
 
-if(currentImage >= currentProduct.images.length){
+if(currentSlide >= currentProduct.images.length){
 
-currentImage = 0;
+currentSlide = 0;
 
 }
 
@@ -152,11 +152,12 @@ updateSlide();
 
 function prevSlide(){
 
-currentImage--;
+currentSlide--;
 
-if(currentImage < 0){
+if(currentSlide < 0){
 
-currentImage = currentProduct.images.length - 1;
+currentSlide =
+currentProduct.images.length - 1;
 
 }
 
@@ -241,9 +242,9 @@ total += item.price;
 
 items.innerHTML += `
 
-<div class="cart-item">
+<div class='cart-item'>
 
-<img src="${item.image}">
+<img src='${item.image}'>
 
 <div>
 
@@ -255,7 +256,7 @@ $${item.price.toLocaleString("es-CL")}
 
 </div>
 
-<button onclick="removeItem(${index})">
+<button onclick='removeItem(${index})'>
 X
 </button>
 
@@ -328,7 +329,7 @@ document.getElementById("profile-menu")
 
 function closeLogin(){
 
-document.getElementById("loginOverlay")
+document.getElementById("register-modal")
 .style.display = "none";
 
 document.body.style.overflow = "auto";
@@ -419,12 +420,15 @@ localStorage.getItem("revnUser");
 
 if(user){
 
-document.getElementById("loginOverlay")
+document.getElementById("register-modal")
 .style.display = "none";
+
+document.getElementById("user-email")
+.innerText = user;
 
 }else{
 
-document.getElementById("loginOverlay")
+document.getElementById("register-modal")
 .style.display = "flex";
 
 }
