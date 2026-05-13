@@ -659,3 +659,17 @@ padding:18px;
 }
 
 }
+body.modal-open{
+overflow:hidden;
+height:100vh;
+}
+
+.modal{
+overflow-y:auto;
+-webkit-overflow-scrolling:touch;
+}
+
+.modal-box{
+max-height:95vh;
+overflow-y:auto;
+}
