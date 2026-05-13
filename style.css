@@ -499,118 +499,84 @@ cursor:pointer;
 
 /* LOGIN REVN FINAL */
 
+/* LOGIN FINAL */
+
 .overlay{
 position:fixed;
 top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,.96);
+background:rgba(0,0,0,.92);
 display:flex;
 justify-content:center;
 align-items:center;
-z-index:10000;
+z-index:99999;
 padding:20px;
 }
 
 .popup{
 width:100%;
-max-width:520px;
-background:black;
-padding:55px 45px;
+max-width:430px;
+background:white;
+padding:45px;
 display:flex;
 flex-direction:column;
-gap:22px;
-color:white;
-border:2px solid white;
+gap:18px;
+color:black;
 }
 
 .popup h2{
 text-align:center;
-font-size:54px;
+font-size:42px;
 font-weight:900;
-letter-spacing:6px;
-margin-bottom:10px;
+letter-spacing:3px;
+margin-bottom:15px;
 }
 
 .popup input{
 width:100%;
-padding:22px;
-font-size:22px;
-border:2px solid white;
+padding:18px;
+font-size:20px;
+border:2px solid black;
+background:white;
 outline:none;
-background:black;
-color:white;
 }
 
-.popup input::placeholder{
-color:#aaa;
+.popup .login-btn{
+background:black;
+color:white;
+border:none;
+padding:20px;
+font-size:30px;
+font-weight:900;
+cursor:pointer;
+}
+
+.popup .create-btn{
+background:white;
+color:black;
+border:none;
+font-size:22px;
+font-weight:700;
+cursor:pointer;
 }
 
 .forgot-password{
 text-align:center;
-font-size:18px;
-font-weight:500;
+font-size:16px;
 text-decoration:underline;
 cursor:pointer;
 margin-top:-5px;
-margin-bottom:10px;
-color:white;
-}
-
-.popup .login-btn{
-width:100%;
-padding:24px;
-background:white;
-color:black;
-border:none;
-font-size:34px;
-font-weight:900;
-letter-spacing:2px;
-cursor:pointer;
-transition:.3s;
-}
-
-.popup .login-btn:hover{
-opacity:.9;
-}
-
-.popup .create-btn{
-width:100%;
-padding:20px;
-background:black;
-color:white;
-border:2px solid white;
-font-size:24px;
-font-weight:900;
-letter-spacing:2px;
-cursor:pointer;
-transition:.3s;
-}
-
-.popup .create-btn:hover{
-background:white;
-color:black;
 }
 
 .auth-switch{
 text-align:center;
-font-size:20px;
+font-size:18px;
 font-weight:700;
 cursor:pointer;
 margin-top:5px;
-text-decoration:underline;
-color:white;
 }
-
-.auth-switch:hover{
-opacity:.7;
-}
-
-/* MOBILE */
-
-@media(max-width:900px){
-
 header{
 padding:20px;
 }
