@@ -1,5 +1,5 @@
 // ======================
-// REVN SCRIPT FINAL REAL
+// REVN SCRIPT FINAL
 // ======================
 
 // PRODUCTOS
@@ -10,8 +10,8 @@ const products = [
 name:"REVN BASIC",
 price:21990,
 images:[
-"activos/basic-front.png",
-"activos/basic-back.png"
+"activos/basic-front.jpg",
+"activos/basic-back.jpg"
 ]
 },
 
@@ -19,8 +19,8 @@ images:[
 name:"REVN DICE",
 price:25990,
 images:[
-"activos/dice-front.png",
-"activos/dice-back.png"
+"activos/dice-front.jpg",
+"activos/dice-back.jpg"
 ]
 },
 
@@ -28,8 +28,8 @@ images:[
 name:"REVN BUTTERFLY",
 price:25990,
 images:[
-"activos/butterfly-front.png",
-"activos/butterfly-back.png"
+"activos/butterfly-front.jpg",
+"activos/butterfly-back.jpg"
 ]
 },
 
@@ -37,8 +37,8 @@ images:[
 name:"REVN TEDDY",
 price:25990,
 images:[
-"activos/teddy-front.png",
-"activos/teddy-back.png"
+"activos/teddy-front.jpg",
+"activos/teddy-back.jpg"
 ]
 }
 
