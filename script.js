@@ -25,11 +25,11 @@ images:[
 },
 
 {
-name:"REVN BUTTERFLY",
+name:"REVN REBIRTH",
 price:25990,
 images:[
-"activos/butterfly-front.jpg",
-"activos/butterfly-back.jpg"
+"activos/rebirth-front.jpg",
+"activos/rebirth-back.jpg"
 ]
 },
 
@@ -337,10 +337,20 @@ location.reload();
 
 function closeLogin(){
 
-document.getElementById("register-modal")
-.style.display = "none";
+const modal =
+document.getElementById("register-modal");
+
+modal.style.opacity = "0";
+
+modal.style.pointerEvents = "none";
 
 document.body.style.overflow = "auto";
+
+setTimeout(()=>{
+
+modal.style.display = "none";
+
+},300);
 
 }
 
@@ -385,12 +395,6 @@ btn.innerText = "INICIAR SESIÓN";
 
 }
 
-localStorage.setItem("revnUser",email);
-
-closeLogin();
-
-}
-
 function register(){
 
 const email =
@@ -409,7 +413,18 @@ return;
 
 localStorage.setItem("revnUser",email);
 
+const btn =
+document.querySelector(".create-btn");
+
+btn.innerText = "CREANDO...";
+
+setTimeout(()=>{
+
 closeLogin();
+
+btn.innerText = "CREAR CUENTA";
+
+},1500);
 
 }
 
@@ -448,6 +463,12 @@ if(user){
 document.getElementById("register-modal")
 .style.display = "none";
 
+document.getElementById("register-modal")
+.style.opacity = "0";
+
+document.getElementById("register-modal")
+.style.pointerEvents = "none";
+
 document.getElementById("user-email")
 .innerText = user;
 
@@ -455,6 +476,12 @@ document.getElementById("user-email")
 
 document.getElementById("register-modal")
 .style.display = "flex";
+
+document.getElementById("register-modal")
+.style.opacity = "1";
+
+document.getElementById("register-modal")
+.style.pointerEvents = "all";
 
 }
 
