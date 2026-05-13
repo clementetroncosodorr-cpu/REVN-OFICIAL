@@ -10,8 +10,8 @@ const products = [
 name:"REVN BASIC",
 price:21990,
 images:[
-"activos/basic1.png",
-"activos/basic2.png"
+"activos/basic-front.png",
+"activos/basic-back.png"
 ]
 },
 
@@ -19,8 +19,8 @@ images:[
 name:"REVN DICE",
 price:25990,
 images:[
-"activos/dice1.png",
-"activos/dice2.png"
+"activos/dice-front.png",
+"activos/dice-back.png"
 ]
 },
 
@@ -28,8 +28,8 @@ images:[
 name:"REVN BUTTERFLY",
 price:25990,
 images:[
-"activos/butterfly1.png",
-"activos/butterfly2.png"
+"activos/butterfly-front.png",
+"activos/butterfly-back.png"
 ]
 },
 
@@ -37,8 +37,8 @@ images:[
 name:"REVN TEDDY",
 price:25990,
 images:[
-"activos/teddy1.png",
-"activos/teddy2.png"
+"activos/teddy-front.png",
+"activos/teddy-back.png"
 ]
 }
 
@@ -320,6 +320,14 @@ function toggleProfile(){
 
 document.getElementById("profile-menu")
 .classList.toggle("show-profile");
+
+}
+
+function logoutUser(){
+
+localStorage.removeItem("revnUser");
+
+location.reload();
 
 }
 
